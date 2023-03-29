@@ -1,19 +1,74 @@
-import { useState } from "react";
+/**
+ * @file ProductList.js
+ * @author Parm Johal
+ * @description This is the component that displays the list of products.
+ */
+
+import { useEffect, useState } from "react";
 import { Table, Button, ButtonGroup } from "reactstrap";
+import Moment from 'react-moment';
 import { MdViewList, MdEdit, MdDelete } from "react-icons/md";
 import ProductDetailModal from "./ProductDetailModal";
 import ProductEditModal from "./ProductEditModal";
 import ProductDeleteModal from "./ProductDeleteModal";
 
 function ProductList(props) {
-  const { products, error } = props;
+  const { products, setProducts, error } = props;
 
-  const [modal, setModal] = useState(false);
+  // State to store the selected product
   const [selectedProduct, setSelectedProduct] = useState({});
 
-  const toggleModal = (product) => {
+  // Modal states
+  const [modalDetail, setModalDetail] = useState(false);
+  const [modalEdit, setModalEdit] = useState(false);
+  const [modalDelete, setModalDelete] = useState(false);
+  
+  // State to update the list of products
+  const [listUpdated, setListUpdated] = useState(false);
+  const [rowDelete, setRowDelete] = useState(false);
+
+  useEffect(() => {
+    // Update the selected product in the list of products
+    if(listUpdated) {
+      console.log("ProductList useEffect edit");
+      setProducts(() => {
+        return products.map((product) => {
+          if (product.productId === selectedProduct.productId) {
+            return selectedProduct;
+          }
+          return product;
+        });
+      });
+      setListUpdated(false);
+    }
+
+    // Delete the selected product from the list of products
+    if(rowDelete) {
+      console.log("ProductList useEffect delete");
+      setProducts(() => {
+        return products.filter((product) => product.productId !== selectedProduct.productId);
+      }
+      );
+      setRowDelete(false);
+    }
+  }, [listUpdated, rowDelete, products, setProducts, selectedProduct]);
+
+  // Toggle the detail modal
+  const toggleModalDetail = (product) => {
+    modalDetail ? setSelectedProduct(null) : setSelectedProduct(product);
+    setModalDetail(!modalDetail);
+  };
+
+  // Toggle the edit modal
+  const toggleModalEdit = (product) => {
     setSelectedProduct(product);
-    setModal(!modal);
+    setModalEdit(!modalEdit);
+  };
+
+  // Toggle the delete modal
+  const toggleModalDelete = (product) => {
+    setSelectedProduct(product);
+    setModalDelete(!modalDelete);
   };
 
   if (error) return (<div>Error getting data!</div>);
@@ -49,36 +104,36 @@ function ProductList(props) {
           </thead>
           <tbody>
             {products.map((product) => (
-              <tr>
+              <tr key={product.productId}>
                 <td>
                   <ButtonGroup>
-                    <Button color="primary" size="sm" title="Details" onClick={() => {toggleModal(product);}}>
+                    <Button color="primary" size="sm" title="Details" onClick={() => { toggleModalDetail(product); }}>
                       <MdViewList />
                     </Button>
-                    <Button color="warning" size="sm" className="Edit">
+                    <Button color="warning" size="sm" className="Edit" onClick={() => { toggleModalEdit(product); }}>
                       <MdEdit />
                     </Button>
-                    <Button color="danger" size="sm" className="Delete">
+                    <Button color="danger" size="sm" className="Delete" onClick={() => { toggleModalDelete(product); }}>
                       <MdDelete />
                     </Button>
                   </ButtonGroup>
-                  
+
                 </td>
                 <td>{product.productName}</td>
                 <td>{product.scrumMasterName}</td>
                 <td>{product.productOwnerName}</td>
-                <td>{product.Developers.map((developer) =>(
+                <td>{product.Developers.map((developer) => (
                   <div>{developer}</div>
                 ))}</td>
-                <td>{new Date(product.startDate).toDateString()}</td>
+                <td><Moment date={product.startDate} format={"YYYY-MM-DD"} /></td>
                 <td>{product.methodology}</td>
               </tr>
             ))}
           </tbody>
         </Table>
-        <ProductDetailModal modal={modal} toggle={toggleModal} selectedProduct={selectedProduct} />
-        <ProductEditModal modal={modal} toggle={toggleModal} selectedProduct={selectedProduct} />
-        <ProductDeleteModal modal={modal} toggle={toggleModal} selectedProduct={selectedProduct} />
+        <ProductDetailModal modal={modalDetail} setModalDetail={setModalDetail} selectedProduct={selectedProduct} />
+        <ProductEditModal modal={modalEdit} setModalEdit={setModalEdit} selectedProduct={selectedProduct} setListUpdated={setListUpdated} setSelectedProduct={setSelectedProduct}  />
+        <ProductDeleteModal modal={modalDelete} setModalDelete={setModalDelete} selectedProduct={selectedProduct} setRowDelete={setRowDelete} />
       </>
     );
   } else {

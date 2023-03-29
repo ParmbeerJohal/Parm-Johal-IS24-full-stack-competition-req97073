@@ -75,7 +75,8 @@ app.put("/api/webapps/:productId/update", (req, res) => {
 // Add a new record
 app.post("/api/webapps/addwebapp", (req, res) => {
     const webAppProject = req.body;
-    data.push(webAppProject);
+    // Add the record to the start of the data array
+    data.unshift(webAppProject);
     res.sendStatus(200);
 });
 

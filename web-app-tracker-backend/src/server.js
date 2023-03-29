@@ -1,20 +1,34 @@
+/**
+ * @file Server.js
+ * @author Parm Johal
+ * @description This is the main entry point for the web app tracker backend.
+ * It uses express to create a REST API for the web app tracker.
+ */
+
 import express from "express";
 import * as fs from 'fs';
 import cors from "cors";
 
+// Create a new express application instance
 const app = express();
+
+// Configure express to use body-parser as middle-ware.
 app.use(express.json());
+
+// Enable CORS
 app.use(cors());
 
 var data;
 
 // Read data from JSON file
 fs.readFile("./data.json", "utf8", (err, jsonString) => {
+    // If there's an error reading the file, log it and return
     if (err) {
         console.log("File read failed:", err);
         return;
     }
 
+    // Parse the JSON string to an object
     data = JSON.parse(jsonString);
 });
 
@@ -30,6 +44,8 @@ app.get("/api/webapps", (req, res) => {
 // Get a single record
 app.get("/api/webapps/:productId", (req, res) => {
     const productId = req.params.productId;
+
+    // Find the record in the data array
     const record = data.find((record) => record.productId === productId);
 
     if (record) {
@@ -43,9 +59,12 @@ app.get("/api/webapps/:productId", (req, res) => {
 app.put("/api/webapps/:productId/update", (req, res) => {
     const productId = req.params.productId;
     const webAppProject = req.body;
+
+    // Find the record in the data array
     const recordIndex = data.findIndex((record) => record.productId === productId);
 
     if (recordIndex >= 0) {
+        // Update the record
         data[recordIndex] = webAppProject;
         res.sendStatus(200);
     } else {
@@ -66,6 +85,7 @@ app.delete("/api/webapps/:productId/deletewebapp", (req, res) => {
     const recordIndex = data.findIndex((record) => record.productId === productId);
 
     if (recordIndex >= 0) {
+        // Delete the record
         data.splice(recordIndex, 1);
         res.sendStatus(200);
     } else {
@@ -73,6 +93,7 @@ app.delete("/api/webapps/:productId/deletewebapp", (req, res) => {
     }
 });
 
+// Start the server
 app.listen(8000, () => {
     console.log("Server is running on port 8000");
 });

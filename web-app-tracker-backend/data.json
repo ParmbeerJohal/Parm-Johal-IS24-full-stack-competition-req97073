@@ -12,7 +12,7 @@
       ],
       "scrumMasterName": "Sondra Scott",
       "startDate": "2018/12/15",
-      "methodology": "AGILE"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd6f458b8254afc9b35",
@@ -27,7 +27,7 @@
       ],
       "scrumMasterName": "Nora Kidd",
       "startDate": "2021/03/08",
-      "methodology": "WATERFALL"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd62c4e5095114a1ff2",
@@ -42,7 +42,7 @@
       ],
       "scrumMasterName": "Helga Levy",
       "startDate": "2022/10/10",
-      "methodology": "DEVOPS"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd6ce3c3ab4f90bbdef",
@@ -57,7 +57,7 @@
       ],
       "scrumMasterName": "Cain Hester",
       "startDate": "2018/06/28",
-      "methodology": "WATERFALL"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd629708e27638c48c2",
@@ -72,7 +72,7 @@
       ],
       "scrumMasterName": "Lawanda Dalton",
       "startDate": "2020/07/07",
-      "methodology": "AGILE"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd650d1f9768d08780b",
@@ -87,7 +87,7 @@
       ],
       "scrumMasterName": "Delores Dyer",
       "startDate": "2020/11/24",
-      "methodology": "WATERFALL"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd664b398027248191e",
@@ -102,7 +102,7 @@
       ],
       "scrumMasterName": "Lina Hardy",
       "startDate": "2022/08/08",
-      "methodology": "RAPID"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd6fc2110f0c8600549",
@@ -117,7 +117,7 @@
       ],
       "scrumMasterName": "Ortiz Clay",
       "startDate": "2022/10/29",
-      "methodology": "DEVOPS"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd6459e8123aed50740",
@@ -132,7 +132,7 @@
       ],
       "scrumMasterName": "Jerry Byrd",
       "startDate": "2019/11/20",
-      "methodology": "WATERFALL"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd6a521abfcb0528e94",
@@ -147,7 +147,7 @@
       ],
       "scrumMasterName": "Collier Lester",
       "startDate": "2019/05/03",
-      "methodology": "RAPID"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd6331a2b27c396ec58",
@@ -162,7 +162,7 @@
       ],
       "scrumMasterName": "Shirley Sharp",
       "startDate": "2022/10/07",
-      "methodology": "DEVOPS"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd64162dac58cef0f60",
@@ -177,7 +177,7 @@
       ],
       "scrumMasterName": "Kane Peck",
       "startDate": "2022/06/09",
-      "methodology": "DEVOPS"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd61436fa8401a870e0",
@@ -192,7 +192,7 @@
       ],
       "scrumMasterName": "Key Odonnell",
       "startDate": "2023/02/25",
-      "methodology": "AGILE"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd63fb3ba6729c77199",
@@ -207,7 +207,7 @@
       ],
       "scrumMasterName": "Christie Allen",
       "startDate": "2018/12/30",
-      "methodology": "WATERFALL"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd6ee87fc7cd9953fc3",
@@ -222,7 +222,7 @@
       ],
       "scrumMasterName": "Allie Molina",
       "startDate": "2018/07/23",
-      "methodology": "RAPID"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd68ba946eeef16cea0",
@@ -237,7 +237,7 @@
       ],
       "scrumMasterName": "Gardner Gallegos",
       "startDate": "2018/12/17",
-      "methodology": "DEVOPS"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd67ca322ac7723e456",
@@ -252,7 +252,7 @@
       ],
       "scrumMasterName": "Ava Wiley",
       "startDate": "2018/09/12",
-      "methodology": "WATERFALL"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd6badaadec1d21787d",
@@ -267,7 +267,7 @@
       ],
       "scrumMasterName": "Melanie Mcfadden",
       "startDate": "2020/07/21",
-      "methodology": "DEVOPS"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd6fbb38310b4485eee",
@@ -282,7 +282,7 @@
       ],
       "scrumMasterName": "Jacqueline Jacobs",
       "startDate": "2019/08/13",
-      "methodology": "RAPID"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd66d714fed8adaaf15",
@@ -297,7 +297,7 @@
       ],
       "scrumMasterName": "Betty Woodard",
       "startDate": "2021/06/21",
-      "methodology": "DEVOPS"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd61823904abedb8a0a",
@@ -312,7 +312,7 @@
       ],
       "scrumMasterName": "Alisa Espinoza",
       "startDate": "2022/11/27",
-      "methodology": "AGILE"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd6fad29ec9c11fd15d",
@@ -327,7 +327,7 @@
       ],
       "scrumMasterName": "Vaughn Johnson",
       "startDate": "2018/02/08",
-      "methodology": "AGILE"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd6db23b952f3e3dea3",
@@ -342,7 +342,7 @@
       ],
       "scrumMasterName": "Conner Robinson",
       "startDate": "2019/07/13",
-      "methodology": "RAPID"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd60f93d7425a001439",
@@ -357,7 +357,7 @@
       ],
       "scrumMasterName": "Faye Henson",
       "startDate": "2022/05/20",
-      "methodology": "RAPID"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd6a265ec2b583d4f48",
@@ -372,7 +372,7 @@
       ],
       "scrumMasterName": "Hood Bradley",
       "startDate": "2019/06/01",
-      "methodology": "WATERFALL"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd6fbef4cb7774c6cb3",
@@ -387,7 +387,7 @@
       ],
       "scrumMasterName": "Mcmahon Cochran",
       "startDate": "2020/10/12",
-      "methodology": "AGILE"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd64a7b9132288b7da2",
@@ -402,7 +402,7 @@
       ],
       "scrumMasterName": "Huber Berry",
       "startDate": "2022/11/11",
-      "methodology": "AGILE"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd617156b766dedc282",
@@ -417,7 +417,7 @@
       ],
       "scrumMasterName": "Annmarie Battle",
       "startDate": "2019/02/13",
-      "methodology": "RAPID"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd6702acfb0766cc135",
@@ -432,7 +432,7 @@
       ],
       "scrumMasterName": "Guerrero Foley",
       "startDate": "2019/12/26",
-      "methodology": "AGILE"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd64dc255cdea44cbd6",
@@ -447,7 +447,7 @@
       ],
       "scrumMasterName": "Lane Acosta",
       "startDate": "2021/04/20",
-      "methodology": "RAPID"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd6d43f7b19ede70450",
@@ -462,7 +462,7 @@
       ],
       "scrumMasterName": "Polly Mcgee",
       "startDate": "2023/01/17",
-      "methodology": "AGILE"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd6ef72021f09053cc4",
@@ -477,7 +477,7 @@
       ],
       "scrumMasterName": "Blankenship Kline",
       "startDate": "2019/06/29",
-      "methodology": "RAPID"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd6b85b693d7572df7c",
@@ -492,7 +492,7 @@
       ],
       "scrumMasterName": "Savage Hopkins",
       "startDate": "2019/07/24",
-      "methodology": "AGILE"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd643b421b8a9aca3b5",
@@ -507,7 +507,7 @@
       ],
       "scrumMasterName": "Alyce Patel",
       "startDate": "2019/05/10",
-      "methodology": "WATERFALL"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd6fc3d6f8d6a0f1b3d",
@@ -522,7 +522,7 @@
       ],
       "scrumMasterName": "Garner Norton",
       "startDate": "2021/11/05",
-      "methodology": "DEVOPS"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd6613c548b62b1deb3",
@@ -537,7 +537,7 @@
       ],
       "scrumMasterName": "Lottie Levine",
       "startDate": "2021/04/28",
-      "methodology": "DEVOPS"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd6abbcb36c492ef16a",
@@ -552,7 +552,7 @@
       ],
       "scrumMasterName": "Mays Hogan",
       "startDate": "2020/05/14",
-      "methodology": "RAPID"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd61f00d38ced4f4e50",
@@ -567,7 +567,7 @@
       ],
       "scrumMasterName": "Pratt Patterson",
       "startDate": "2018/08/19",
-      "methodology": "AGILE"
+      "methodology": "Agile"
     },
     {
       "productId": "641eacd61bc88661ed7e4087",
@@ -582,7 +582,7 @@
       ],
       "scrumMasterName": "Sasha Davidson",
       "startDate": "2019/03/17",
-      "methodology": "RAPID"
+      "methodology": "Waterfall"
     },
     {
       "productId": "641eacd65ed1247c8d0d3a5c",
@@ -597,6 +597,6 @@
       ],
       "scrumMasterName": "Molina Combs",
       "startDate": "2022/11/06",
-      "methodology": "AGILE"
+      "methodology": "Agile"
     }
   ]

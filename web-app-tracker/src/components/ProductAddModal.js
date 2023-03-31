@@ -76,7 +76,7 @@ function ProductAddModal(props) {
         };
 
         // Add the product
-        await axios.post("http://localhost:3000/api/products/ad", product)
+        await axios.post("http://localhost:3000/api/products/add", product)
             .then((response) => {
                 if (response.status === 200) {
                     // Update the list of products and close the modal

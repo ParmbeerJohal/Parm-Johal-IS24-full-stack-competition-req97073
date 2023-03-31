@@ -31,10 +31,10 @@ function ProductDetailModal(props) {
             </ModalHeader>
             <ModalBody>
                 <p>
-                    <strong>Product Name: </strong>{selectedProduct.productName}
+                    <strong>Product Number: </strong>{selectedProduct.productId}
                 </p>
                 <p>
-                    <strong>Product Number: </strong>{selectedProduct.productId}
+                    <strong>Product Name: </strong>{selectedProduct.productName}
                 </p>
                 <p>
                     <strong>Product Owner: </strong>{selectedProduct.productOwnerName}
@@ -49,8 +49,8 @@ function ProductDetailModal(props) {
                     <strong>Methodology: </strong>{selectedProduct.methodology}
                 </p>
                 <p>
-                    <strong>Developers: </strong>{selectedProduct.Developers?.map((developer) => (
-                        <div>{developer}</div>
+                    <strong>Developers: </strong>{selectedProduct.Developers?.map((developer, index) => (
+                        <div key={index}>{developer}</div>
                     ))}
                 </p>
             </ModalBody>

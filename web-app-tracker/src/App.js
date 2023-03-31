@@ -21,11 +21,11 @@ function App() {
   const [listUpdated, setListUpdated] = useState(false);
   const [modalAdd, setModalAdd] = useState(false);
 
+  // Get the list of products
   useEffect(() => {
     async function getProducts() {
-      await axios.get("http://localhost:8000/api/webapps")
+      await axios.get("http://localhost:8000/api/products")
         .then(response => {
-          //console.log(response);
           if (response.status === 200) {
             setError(false);
             setProducts(response.data);
@@ -33,6 +33,7 @@ function App() {
           } else {
             console.log(response);
             setError(true);
+            setLoading(false);
           }
         })
         .catch(error => {
@@ -43,12 +44,12 @@ function App() {
     getProducts();
   }, []);
 
+  // Update the list of products if the listUpdated state is true
   useEffect(() => {
     if(listUpdated) {
       async function getProducts() {
-        await axios.get("http://localhost:8000/api/webapps")
+        await axios.get("http://localhost:8000/api/products")
           .then(response => {
-            //console.log(response);
             if (response.status === 200) {
               setError(false);
               setProducts(response.data);
@@ -68,19 +69,6 @@ function App() {
       setListUpdated(false);
     }
   }, [listUpdated]);
-
-  // useEffect(() => {
-  //   setProducts(products.filter(product => {
-  //     return (
-  //       product.productName.toLowerCase().includes(productNameFilter.toLowerCase())
-  //       && product.scrumMaster.toLowerCase().includes(scrumMasterFilter.toLowerCase())
-  //       && product.productOwner.toLowerCase().includes(productOwnerFilter.toLowerCase())
-  //       && product.developerName.toLowerCase().includes(developerNameFilter.toLowerCase())
-  //       && product.startDate.toLowerCase().includes(startDateFilter.toLowerCase())
-  //       && product.methodology.toLowerCase().includes(methodologyFilter.toLowerCase())
-  //     );
-  //   }));
-  // }, [products, productNameFilter, scrumMasterFilter, productOwnerFilter, developerNameFilter, startDateFilter, methodologyFilter]);
 
   if (loading) return (<Spinner className="spinner">Loading...</Spinner>);
 

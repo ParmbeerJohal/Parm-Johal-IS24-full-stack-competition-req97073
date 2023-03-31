@@ -94,7 +94,7 @@ function ProductFiltersRow(props) {
             <Col>
                 <Label for="startDateFilter">Start Date</Label>
                 <Input
-                    type="date"
+                    type="text"
                     name="startDateFilter"
                     id="startDateFilter"
                     className="productListFilter"

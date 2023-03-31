@@ -24,7 +24,7 @@ function ProductDeleteModal(props) {
         setLoading(true);
 
         // Delete the product
-        await axios.delete(`http://localhost:8000/api/webapps/${selectedProduct.productId}/deletewebapp`)
+        await axios.delete(`http://localhost:8000/api/products/${selectedProduct.productId}/delete`)
             .then(response => {
                 console.log(response);
                 if (response.status === 200) {

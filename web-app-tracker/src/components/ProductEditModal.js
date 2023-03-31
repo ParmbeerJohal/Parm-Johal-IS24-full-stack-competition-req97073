@@ -55,7 +55,7 @@ function ProductEditModal(props) {
     };
 
     // Update the product
-    await axios.put(`http://localhost:8000/api/webapps/${selectedProduct.productId}/update`, product)
+    await axios.put(`http://localhost:8000/api/products/${selectedProduct.productId}/update`, product)
       .then((response) => {
         if (response.status === 200) {
           // Update the list of products and close the modal
@@ -100,16 +100,6 @@ function ProductEditModal(props) {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="productNumber">Product Number</Label>
-            <Input
-              type="text"
-              name="productNumber"
-              id="productNumber"
-              placeholder="Enter product number"
-              defaultValue={selectedProduct.productId}
-            />
-          </FormGroup>
-          <FormGroup>
             <Label for="productOwner">Product Owner</Label>
             <Input
               type="text"
@@ -136,7 +126,7 @@ function ProductEditModal(props) {
               name="startDate"
               id="startDate"
               placeholder="Enter start date"
-              defaultValue={moment(selectedProduct.startDate).format("YYYY-MM-DD")}
+              defaultValue={moment(selectedProduct.startDate, "YYYY-MM-DD")}
             />
           </FormGroup>
           <FormGroup>
@@ -166,8 +156,8 @@ function ProductEditModal(props) {
           <hr />
           <h4>Current Developers</h4>
           <div>
-            {selectedProduct.Developers?.map((developer) => (
-              <div>{developer}</div>
+            {selectedProduct.Developers?.map((developer, index) => (
+              <div key={index}>{developer}</div>
             ))}
           </div>
         </ModalBody>

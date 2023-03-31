@@ -28,6 +28,7 @@ function ProductList(props) {
   const [listUpdated, setListUpdated] = useState(false);
   const [rowDelete, setRowDelete] = useState(false);
   const [listFiltered, setListFiltered] = useState(false);
+  const [numproducts, setNumProducts] = useState(products.length);
 
   // Object to store the filter
   const [filtersObject, setFiltersObject] = useState({
@@ -38,6 +39,25 @@ function ProductList(props) {
     startDateFilter: "",
     methodologyFilter: ""
   });
+
+  // Update the number of products
+  useEffect(() => {
+    setNumProducts(products
+      .filter((product) => {
+        return (
+          listFiltered ? (
+            product.productName?.toLowerCase().includes(filtersObject.productNameFilter?.toLowerCase()) &&
+            product.scrumMasterName?.toLowerCase().includes(filtersObject.scrumMasterFilter?.toLowerCase()) &&
+            product.productOwnerName?.toLowerCase().includes(filtersObject.productOwnerFilter?.toLowerCase()) &&
+            product.Developers?.join(" ").toLowerCase().includes(filtersObject.developerNameFilter?.toLowerCase()) &&
+            product.startDate?.replaceAll("/", "").includes(filtersObject.startDateFilter?.replace(/\/|-/g, "")) &&
+            product.methodology?.toLowerCase().includes(filtersObject.methodologyFilter?.toLowerCase())
+          ) : (
+            product
+          )
+        );
+      }).length);
+  }, [products, listFiltered, filtersObject]);
 
   useEffect(() => {
     // Update the selected product in the list of products
@@ -52,6 +72,7 @@ function ProductList(props) {
         });
       });
       setListUpdated(false);
+      setNumProducts(products.length);
     }
 
     // Delete the selected product from the list of products
@@ -59,8 +80,7 @@ function ProductList(props) {
       console.log("ProductList useEffect delete");
       setProducts(() => {
         return products.filter((product) => product.productId !== selectedProduct.productId);
-      }
-      );
+      });
       setRowDelete(false);
     }
   }, [listUpdated, rowDelete, products, setProducts, selectedProduct]);
@@ -93,6 +113,7 @@ function ProductList(props) {
           setFiltersObject={setFiltersObject}
           setListFiltered={setListFiltered}
         />
+        <div><b>Number of Products:</b> {numproducts}</div>
         <Table responsive hover>
           <thead>
             <tr>
@@ -130,8 +151,8 @@ function ProductList(props) {
                   product.productName?.toLowerCase().includes(filtersObject.productNameFilter?.toLowerCase()) &&
                   product.scrumMasterName?.toLowerCase().includes(filtersObject.scrumMasterFilter?.toLowerCase()) &&
                   product.productOwnerName?.toLowerCase().includes(filtersObject.productOwnerFilter?.toLowerCase()) &&
-                  //product.developerNames?.toLowerCase().includes(filtersObject.developerNameFilter?.toLowerCase()) &&
-                  product.startDate?.toLowerCase().includes(filtersObject.startDateFilter?.toLowerCase()) &&
+                  product.Developers?.join(" ").toLowerCase().includes(filtersObject.developerNameFilter?.toLowerCase()) &&
+                  product.startDate?.replaceAll("/", "").includes(filtersObject.startDateFilter?.replace(/\/|-/g, "")) &&
                   product.methodology?.toLowerCase().includes(filtersObject.methodologyFilter?.toLowerCase())
                 ) : (
                   product

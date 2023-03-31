@@ -46,7 +46,7 @@ function ProductEditModal(props) {
     const developers = data.get("developers").split(",");
     const product = {
       productName: data.get("productName"),
-      productId: data.get("productNumber"),
+      productId: selectedProduct.productId,
       productOwnerName: data.get("productOwner"),
       scrumMasterName: data.get("scrumMaster"),
       startDate: data.get("startDate"),
@@ -126,7 +126,7 @@ function ProductEditModal(props) {
               name="startDate"
               id="startDate"
               placeholder="Enter start date"
-              defaultValue={moment(selectedProduct.startDate, "YYYY-MM-DD")}
+              defaultValue={moment(selectedProduct.startDate, "YYYY-MM-DD").format("YYYY-MM-DD")}
             />
           </FormGroup>
           <FormGroup>

@@ -157,7 +157,7 @@ function ProductEditModal(props) {
           <h4>Current Developers</h4>
           <div>
             {selectedProduct.Developers?.map((developer, index) => (
-              <div key={index}>{developer}</div>
+              <div>{developer}</div>
             ))}
           </div>
         </ModalBody>

@@ -50,7 +50,7 @@ function ProductDetailModal(props) {
                 </p>
                 <p>
                     <strong>Developers: </strong>{selectedProduct.Developers?.map((developer, index) => (
-                        <div key={index}>{developer}</div>
+                        <div>{developer}</div>
                     ))}
                 </p>
             </ModalBody>

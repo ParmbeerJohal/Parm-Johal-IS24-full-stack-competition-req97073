@@ -9,7 +9,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import ProductList from "./components/ProductList";
 import ProductAddModal from "./components/ProductAddModal";
-import { Container, Spinner, Button } from "reactstrap";
+import {
+  Container,
+  Spinner,
+  Button
+} from "reactstrap";
 
 function App() {
   // State to store the list of products

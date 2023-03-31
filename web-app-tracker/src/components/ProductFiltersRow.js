@@ -15,7 +15,7 @@ import {
 /**
  * @function ProductFiltersRow
  * @description This is the component that displays the filters for the product list.
- * @param {*} props
+ * @param { filtersObject, setFiltersObject, setListFiltered } props
  * @return {JSX.Element}
  */
 function ProductFiltersRow(props) {

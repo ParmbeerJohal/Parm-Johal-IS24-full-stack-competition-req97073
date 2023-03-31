@@ -22,7 +22,7 @@ import {
 /**
  * @function ProductAddModal
  * @description This is the modal component that displays the list of products.
- * @param {*} props
+ * @param { modal, setModalAdd, setListUpdated } props
  * @return {JSX.Element}
  */
 function ProductAddModal(props) {

@@ -24,11 +24,18 @@ import {
 /**
  * @function ProductEditModal
  * @description This is the component that displays the edit modal for a product.
- * @param {*} props 
+ * @param { modal, setModalEdit, selectedProduct, setListUpdated, setSelectedProduct } props
  * @return {JSX.Element}
  */
 function ProductEditModal(props) {
-  const { modal, setModalEdit, selectedProduct, setListUpdated, setSelectedProduct } = props;
+  const {
+    modal,
+    setModalEdit,
+    selectedProduct,
+    setListUpdated,
+    setSelectedProduct
+  } = props;
+
   const [loading, setLoading] = useState(false);
 
   const toggle = () => {
@@ -174,7 +181,7 @@ function ProductEditModal(props) {
           </div>
         </ModalBody>
         <ModalFooter>
-        {errorMessage && <p className="text-danger">{errorMessage}</p>}
+          {errorMessage && <p className="text-danger">{errorMessage}</p>}
           <Button color="secondary" onClick={toggle}>
             Close
           </Button>

@@ -7,10 +7,27 @@
 import axios from "axios";
 import { useState } from "react";
 import { Spinner } from "reactstrap";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import {
+    Button,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    ModalFooter
+} from "reactstrap";
 
+/**
+ * @function ProductDeleteModal
+ * @description This is the component that displays the delete modal for a product.
+ * @param { modal, setModalDelete, selectedProduct, setRowDelete } props
+ * @return {JSX.Element}
+ */
 function ProductDeleteModal(props) {
-    const { modal, setModalDelete, selectedProduct, setRowDelete } = props;
+    const {
+        modal,
+        setModalDelete,
+        selectedProduct,
+        setRowDelete
+    } = props;
 
     // State to store the loading spinner
     const [loading, setLoading] = useState(false);

@@ -10,6 +10,7 @@ import * as fs from 'fs';
 import cors from "cors";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "../swagger.json" assert { type: "json" };
+import { v4 as uuidv4 } from "uuid";
 
 // Create a new express application instance
 const app = express();
@@ -35,7 +36,7 @@ fs.readFile("./data.json", "utf8", (err, jsonString) => {
 });
 
 // Get all records
-app.get("/api/webapps", (req, res) => {
+app.get("/api/products", (req, res) => {
     if (data) {
         res.send(data);
     } else {
@@ -44,7 +45,7 @@ app.get("/api/webapps", (req, res) => {
 });
 
 // Get a single record
-app.get("/api/webapps/:productId", (req, res) => {
+app.get("/api/products/:productId", (req, res) => {
     const productId = req.params.productId;
 
     // Find the record in the data array
@@ -58,16 +59,16 @@ app.get("/api/webapps/:productId", (req, res) => {
 });
 
 // Update a single record
-app.put("/api/webapps/:productId/update", (req, res) => {
+app.put("/api/products/:productId/update", (req, res) => {
     const productId = req.params.productId;
-    const webAppProject = req.body;
+    const webAppProduct = req.body;
 
     // Find the record in the data array
     const recordIndex = data.findIndex((record) => record.productId === productId);
 
     if (recordIndex >= 0) {
         // Update the record
-        data[recordIndex] = webAppProject;
+        data[recordIndex] = webAppProduct;
         res.sendStatus(200);
     } else {
         res.sendStatus(404);
@@ -75,15 +76,27 @@ app.put("/api/webapps/:productId/update", (req, res) => {
 });
 
 // Add a new record
-app.post("/api/webapps/addwebapp", (req, res) => {
-    const webAppProject = req.body;
+app.post("/api/products/add", (req, res) => {
+    const webAppProduct = req.body;
+
+    // Generate a unique product ID
+    const newProductId = uuidv4();
+    
+    // If the product ID is already in use, generate a new one
+    while (data.find((record) => record.productId === newProductId)) {
+        newProductId = uuidv4();
+    }
+
+    // Add the new product ID to the web app project object
+    webAppProduct.productId = newProductId;
+
     // Add the record to the start of the data array
-    data.unshift(webAppProject);
+    data.unshift(webAppProduct);
     res.sendStatus(200);
 });
 
 // Delete a record
-app.delete("/api/webapps/:productId/deletewebapp", (req, res) => {
+app.delete("/api/products/:productId/delete", (req, res) => {
     const productId = req.params.productId;
     const recordIndex = data.findIndex((record) => record.productId === productId);
 
@@ -94,6 +107,11 @@ app.delete("/api/webapps/:productId/deletewebapp", (req, res) => {
     } else {
         res.sendStatus(404);
     }
+});
+
+// API health check
+app.get("/api/health", (req, res) => {
+    res.sendStatus(200);
 });
 
 // Serve the Swagger UI

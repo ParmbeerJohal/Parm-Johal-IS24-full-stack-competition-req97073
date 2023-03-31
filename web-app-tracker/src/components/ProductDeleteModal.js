@@ -15,8 +15,14 @@ function ProductDeleteModal(props) {
     // State to store the loading spinner
     const [loading, setLoading] = useState(false);
 
+    // State to store the error message
+    const [errorMessage, setErrorMessage] = useState("");
+
     // Toggle the delete modal
-    const toggle = () => setModalDelete(!modal);
+    const toggle = () => {
+        setModalDelete(!modal);
+        setErrorMessage("");
+    };
 
     // Handle the delete button click
     const handleDelete = async () => {
@@ -31,13 +37,17 @@ function ProductDeleteModal(props) {
                     console.log("Product deleted");
                     setLoading(false);
                     setRowDelete(true);
+                    setErrorMessage("");
                     toggle();
                 } else {
                     console.log("Product not deleted");
+                    setErrorMessage("Product not deleted. Error: " + response.status + " " + response.statusText);
                 }
             })
             .catch(error => {
                 console.log(error);
+                setLoading(false);
+                setErrorMessage("Product not deleted. Error: " + error);
             });
     }
 
@@ -51,6 +61,7 @@ function ProductDeleteModal(props) {
             </ModalHeader>
             <ModalBody>
                 <p>Are you sure you want to delete the product "{selectedProduct.productName}"?</p>
+                {errorMessage && <p className="text-danger">{errorMessage}</p>}
             </ModalBody>
             <ModalFooter>
                 <Button color="secondary" onClick={toggle}>

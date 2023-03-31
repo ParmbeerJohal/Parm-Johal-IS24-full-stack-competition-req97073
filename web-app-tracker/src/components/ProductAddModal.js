@@ -67,17 +67,23 @@ function ProductAddModal(props) {
         };
 
         // Add the product
-        await axios.post("http://localhost:8000/api/products/add", product)
+        await axios.post("http://localhost:8000/api/products/ad", product)
             .then((response) => {
                 if (response.status === 200) {
                     // Update the list of products and close the modal
                     setListUpdated(true);
                     setLoading(false);
                     toggle();
+                    setErrorMessage("");
+                } else {
+                    // Display an error message
+                    setErrorMessage("Product not added. Error: " + response.status + " " + response.statusText);
+                    setLoading(false);
                 }
             })
             .catch((error) => {
-                console.log(error);
+                setErrorMessage("Product not added. Error: " + error);
+                setLoading(false);
             });
     }
 
@@ -112,9 +118,9 @@ function ProductAddModal(props) {
                     <FormGroup>
                         <Label for="developers">Developers (up to 5)</Label>
                         <Input type="text" name="developers" id="developers" placeholder="Enter the developers (comma separated)" required />
-                        <p className="text-danger">{errorMessage}</p>
                     </FormGroup>
                     <ModalFooter>
+                        {errorMessage && <p className="text-danger">{errorMessage}</p>}
                         <Button color="primary" type="submit" disabled={loading}>
                             {loading ? <Spinner size="sm" color="light" /> : "Submit"}
                         </Button>

@@ -32,6 +32,16 @@ function ProductAddModal(props) {
         setListUpdated
     } = props;
 
+    // State to store the product object
+    const [productObject, setProductObject] = useState({
+        productName: "",
+        productOwnerName: "",
+        scrumMasterName: "",
+        startDate: "",
+        methodology: "Agile",
+        developers: ""
+    });
+
     // State to store the loading spinner
     const [loading, setLoading] = useState(false);
 
@@ -65,13 +75,23 @@ function ProductAddModal(props) {
             return;
         }
 
+        // // Create the product object
+        // const product = {
+        //     productName: data.get("productName"),
+        //     productOwnerName: data.get("productOwner"),
+        //     scrumMasterName: data.get("scrumMaster"),
+        //     startDate: data.get("startDate"),
+        //     methodology: data.get("methodology"),
+        //     Developers: developers,
+        // };
+
         // Create the product object
         const product = {
-            productName: data.get("productName"),
-            productOwnerName: data.get("productOwner"),
-            scrumMasterName: data.get("scrumMaster"),
-            startDate: data.get("startDate"),
-            methodology: data.get("methodology"),
+            productName: productObject.productName,
+            productOwnerName: productObject.productOwnerName,
+            scrumMasterName: productObject.scrumMasterName,
+            startDate: productObject.startDate,
+            methodology: productObject.methodology,
             Developers: developers,
         };
 
@@ -84,6 +104,16 @@ function ProductAddModal(props) {
                     setLoading(false);
                     toggle();
                     setErrorMessage("");
+
+                    // Reset the product object
+                    setProductObject({
+                        productName: "",
+                        productOwnerName: "",
+                        scrumMasterName: "",
+                        startDate: "",
+                        methodology: "Agile",
+                        developers: ""
+                    });
                 } else {
                     // Error handling
                     setErrorMessage("Product not added. Error: " + response.status + " " + response.statusText);
@@ -103,31 +133,77 @@ function ProductAddModal(props) {
             <ModalBody>
                 <Form onSubmit={handleSubmit}>
                     <FormGroup>
-                        <Label for="productName">Product Name</Label>
-                        <Input type="text" name="productName" id="productName" placeholder="Enter the product name" required />
+                        <Label for="productName"><strong>Product Name</strong></Label>
+                        <Input
+                            type="text"
+                            name="productName"
+                            id="productName"
+                            placeholder="Enter the product name"
+                            defaultValue={productObject.productName}
+                            onChange={(event) => setProductObject({ ...productObject, productName: event.target.value })}
+                            required
+                        />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="productOwner">Product Owner</Label>
-                        <Input type="text" name="productOwner" id="productOwner" placeholder="Enter the product owner" required />
+                        <Label for="productOwner"><strong>Product Owner</strong></Label>
+                        <Input
+                            type="text"
+                            name="productOwner"
+                            id="productOwner"
+                            placeholder="Enter the product owner"
+                            defaultValue={productObject.productOwnerName}
+                            onChange={(event) => setProductObject({ ...productObject, productOwnerName: event.target.value })}
+                            required />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="scrumMaster">Scrum Master</Label>
-                        <Input type="text" name="scrumMaster" id="scrumMaster" placeholder="Enter the scrum master" required />
+                        <Label for="scrumMaster"><strong>Scrum Master</strong></Label>
+                        <Input
+                            type="text"
+                            name="scrumMaster"
+                            id="scrumMaster"
+                            placeholder="Enter the scrum master"
+                            defaultValue={productObject.scrumMasterName}
+                            onChange={(event) => setProductObject({ ...productObject, scrumMasterName: event.target.value })}
+                            required
+                        />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="startDate">Start Date</Label>
-                        <Input type="date" name="startDate" id="startDate" placeholder="Enter the start date" required />
+                        <Label for="startDate"><strong>Start Date</strong></Label>
+                        <Input
+                            type="date"
+                            name="startDate"
+                            id="startDate"
+                            placeholder="Enter the start date"
+                            defaultValue={productObject.startDate}
+                            onChange={(event) => setProductObject({ ...productObject, startDate: event.target.value })}
+                            required
+                        />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="methodology">Methodology</Label>
-                        <Input type="select" name="methodology" id="methodology" required>
-                            <option value="Agile">Agile</option>
+                        <Label for="methodology"><strong>Methodology</strong></Label>
+                        <Input
+                            type="select"
+                            name="methodology"
+                            id="methodology"
+                            defaultValue={productObject.methodology}
+                            onChange={(event) => setProductObject({ ...productObject, methodology: event.target.value })}
+                            required
+                        >
+                            <option value="Agile" default>Agile</option>
                             <option value="Waterfall">Waterfall</option>
                         </Input>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="developers">Developers (up to 5)</Label>
-                        <Input type="text" name="developers" id="developers" placeholder="Enter the developers (comma separated)" required />
+                        <Label for="developers"><strong>Developers (up to 5)</strong></Label>
+                        <Input
+                            type="text"
+                            name="developers"
+                            id="developers"
+                            placeholder="Enter the developers (comma separated)"
+                            defaultValue={productObject.developers}
+                            onChange={(event) => setProductObject({ ...productObject, developers: event.target.value })}
+                            required
+                        />
                     </FormGroup>
                     <ModalFooter>
                         {errorMessage && <p className="text-danger">{errorMessage}</p>}

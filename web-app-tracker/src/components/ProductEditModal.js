@@ -168,13 +168,13 @@ function ProductEditModal(props) {
             </Input>
           </FormGroup>
           <FormGroup>
-            <Label for="developers"><strong>Developers</strong></Label>
+            <Label for="developers"><strong>Developers (up to 5)</strong></Label>
             <InputGroup>
               <Input
                 type="text"
                 name="developers"
                 id="developers"
-                placeholder="Enter developers"
+                placeholder="Enter the developers (comma separated)"
                 defaultValue={selectedProduct.Developers}
                 required
               />

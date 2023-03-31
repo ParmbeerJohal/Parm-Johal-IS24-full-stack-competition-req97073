@@ -10,6 +10,8 @@
 - **React** - JS library to build the interactive user interface on the Frontend
 - **Express** - Fast Node.js network app framework used for the Backend
 - **Docker** - Paas used for containerization of the full-stack app
+- **Node.js** - JS Environment used for the application
+- **Swagger** - API documentation tool used for backend API endpoint specs
 
 ## Installation
 - Make sure to have Git and Docker installed and be able to run ```docker compose``` from the command line

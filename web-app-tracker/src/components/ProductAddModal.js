@@ -131,12 +131,14 @@ function ProductAddModal(props) {
                     </FormGroup>
                     <ModalFooter>
                         {errorMessage && <p className="text-danger">{errorMessage}</p>}
-                        <Button color="primary" type="submit" disabled={loading}>
-                            {loading ? <Spinner size="sm" color="light" /> : "Submit"}
-                        </Button>
-                        <Button color="secondary" onClick={toggle} disabled={loading}>
-                            Cancel
-                        </Button>
+                        <div>
+                            <Button color="primary" type="submit" disabled={loading}>
+                                {loading ? <Spinner size="sm" color="light" /> : "Submit"}
+                            </Button>
+                            <Button color="secondary" onClick={toggle} disabled={loading}>
+                                Cancel
+                            </Button>
+                        </div>
                     </ModalFooter>
                 </Form>
             </ModalBody>

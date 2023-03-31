@@ -127,6 +127,7 @@ function ProductEditModal(props) {
               id="productName"
               placeholder="Enter product name"
               defaultValue={selectedProduct.productName}
+              required
             />
           </FormGroup>
           <FormGroup>
@@ -137,6 +138,7 @@ function ProductEditModal(props) {
               id="productOwner"
               placeholder="Enter product owner"
               defaultValue={selectedProduct.productOwnerName}
+              required
             />
           </FormGroup>
           <FormGroup>
@@ -147,6 +149,7 @@ function ProductEditModal(props) {
               id="scrumMaster"
               placeholder="Enter scrum master"
               defaultValue={selectedProduct.scrumMasterName}
+              required
             />
           </FormGroup>
           <Label><strong>Start Date</strong></Label>
@@ -158,6 +161,7 @@ function ProductEditModal(props) {
               name="methodology"
               id="methodology"
               defaultValue={selectedProduct.methodology}
+              required
             >
               <option value="Agile">Agile</option>
               <option value="Waterfall">Waterfall</option>
@@ -172,6 +176,7 @@ function ProductEditModal(props) {
                 id="developers"
                 placeholder="Enter developers"
                 defaultValue={selectedProduct.Developers}
+                required
               />
             </InputGroup>
           </FormGroup>

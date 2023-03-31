@@ -110,7 +110,7 @@ app.delete("/api/products/:productId/delete", (req, res) => {
 });
 
 // API health check
-app.get("/api", (req, res) => {
+app.get("/api/health", (req, res) => {
     res.sendStatus(200);
 });
 

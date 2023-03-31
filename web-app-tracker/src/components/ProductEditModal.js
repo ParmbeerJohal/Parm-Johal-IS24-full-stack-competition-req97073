@@ -24,14 +24,29 @@ import {
 /**
  * @function ProductEditModal
  * @description This is the component that displays the edit modal for a product.
- * @param {*} props 
+ * @param { modal, setModalEdit, selectedProduct, setListUpdated, setSelectedProduct } props
  * @return {JSX.Element}
  */
 function ProductEditModal(props) {
-  const { modal, setModalEdit, selectedProduct, setListUpdated, setSelectedProduct } = props;
+  const {
+    modal,
+    setModalEdit,
+    selectedProduct,
+    setListUpdated,
+    setSelectedProduct
+  } = props;
+
+  // State to store the loading spinner
   const [loading, setLoading] = useState(false);
 
-  const toggle = () => setModalEdit(!modal);
+  // Toggle the edit modal and reset the error message
+  const toggle = () => {
+    setModalEdit(!modal);
+    setErrorMessage("");
+  };
+
+  // State to store the error message
+  const [errorMessage, setErrorMessage] = useState("");
 
   // Handle the form submission
   const handleSubmit = async (event) => {
@@ -44,12 +59,21 @@ function ProductEditModal(props) {
     // Get the form data
     const data = new FormData(event.target);
     const developers = data.get("developers").split(",");
+
+    // If the developers array is greater than 5, return a validation error
+    if (developers.length > 5) {
+      setErrorMessage("You can only have a maximum of 5 developers.");
+      setLoading(false);
+      return;
+    }
+
+    // Create the product object
     const product = {
       productName: data.get("productName"),
-      productId: data.get("productNumber"),
+      productId: selectedProduct.productId,
       productOwnerName: data.get("productOwner"),
       scrumMasterName: data.get("scrumMaster"),
-      startDate: data.get("startDate"),
+      startDate: selectedProduct.startDate,
       methodology: data.get("methodology"),
       Developers: developers,
     };
@@ -64,18 +88,22 @@ function ProductEditModal(props) {
           // Update the selected product
           setSelectedProduct(product);
 
+          setErrorMessage("");
+
           // Close the modal
           toggle();
         } else {
-          console.log("Product not edited");
+          // Error handling
+          setErrorMessage("Product not edited. Error: " + response.status + " " + response.statusText);
         }
         // Stop the loading spinner
         setLoading(false);
       })
       // Catch any errors
       .catch((error) => {
-        console.log(error);
+        // Error handling
         setLoading(false);
+        setErrorMessage("Product not edited. Error: " + error);
       });
   };
 
@@ -89,8 +117,10 @@ function ProductEditModal(props) {
           Edit Product Details
         </ModalHeader>
         <ModalBody>
+          <p><strong>Product Number:</strong></p>
+          <p>{selectedProduct.productId}</p>
           <FormGroup>
-            <Label for="productName">Product Name</Label>
+            <Label for="productName"><strong>Product Name</strong></Label>
             <Input
               type="text"
               name="productName"
@@ -100,7 +130,7 @@ function ProductEditModal(props) {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="productOwner">Product Owner</Label>
+            <Label for="productOwner"><strong>Product Owner</strong></Label>
             <Input
               type="text"
               name="productOwner"
@@ -110,7 +140,7 @@ function ProductEditModal(props) {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="scrumMaster">Scrum Master</Label>
+            <Label for="scrumMaster"><strong>Scrum Master</strong></Label>
             <Input
               type="text"
               name="scrumMaster"
@@ -119,18 +149,10 @@ function ProductEditModal(props) {
               defaultValue={selectedProduct.scrumMasterName}
             />
           </FormGroup>
+          <Label><strong>Start Date</strong></Label>
+          <p>{moment(selectedProduct.startDate, "YYYY-MM-DD").format("YYYY-MM-DD")}</p>
           <FormGroup>
-            <Label for="startDate">Start Date</Label>
-            <Input
-              type="date"
-              name="startDate"
-              id="startDate"
-              placeholder="Enter start date"
-              defaultValue={moment(selectedProduct.startDate, "YYYY-MM-DD")}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="methodology">Methodology</Label>
+            <Label for="methodology"><strong>Methodology</strong></Label>
             <Input
               type="select"
               name="methodology"
@@ -142,7 +164,7 @@ function ProductEditModal(props) {
             </Input>
           </FormGroup>
           <FormGroup>
-            <Label for="developers">Developers</Label>
+            <Label for="developers"><strong>Developers</strong></Label>
             <InputGroup>
               <Input
                 type="text"
@@ -162,6 +184,7 @@ function ProductEditModal(props) {
           </div>
         </ModalBody>
         <ModalFooter>
+          {errorMessage && <p className="text-danger">{errorMessage}</p>}
           <Button color="secondary" onClick={toggle}>
             Close
           </Button>

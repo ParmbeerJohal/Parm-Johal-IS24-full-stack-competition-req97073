@@ -15,11 +15,15 @@ import {
 /**
  * @function ProductDetailModal
  * @description This is the component that displays the details of a product.
- * @param {*} props
+ * @param { modal, setModalDetail, selectedProduct } props
  * @return {JSX.Element}
  */
 function ProductDetailModal(props) {
-    const { modal, setModalDetail, selectedProduct } = props;
+    const {
+        modal,
+        setModalDetail,
+        selectedProduct
+    } = props;
 
     // Toggle the modal
     const toggle = () => setModalDetail(!modal);

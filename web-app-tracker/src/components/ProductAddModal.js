@@ -22,15 +22,23 @@ import {
 /**
  * @function ProductAddModal
  * @description This is the modal component that displays the list of products.
- * @param {*} props
+ * @param { modal, setModalAdd, setListUpdated } props
  * @return {JSX.Element}
  */
 function ProductAddModal(props) {
-    const { modal, setModalAdd, setListUpdated } = props;
+    const {
+        modal,
+        setModalAdd,
+        setListUpdated
+    } = props;
+
+    // State to store the loading spinner
     const [loading, setLoading] = useState(false);
 
+    // State to store the error message
     const [errorMessage, setErrorMessage] = useState("");
 
+    // Toggle the add modal and reset the error message
     const toggle = () => {
         setModalAdd(!modal);
         setErrorMessage("");
@@ -57,6 +65,7 @@ function ProductAddModal(props) {
             return;
         }
 
+        // Create the product object
         const product = {
             productName: data.get("productName"),
             productOwnerName: data.get("productOwner"),
@@ -67,17 +76,24 @@ function ProductAddModal(props) {
         };
 
         // Add the product
-        await axios.post("http://localhost:8000/api/products/add", product)
+        await axios.post("http://localhost:8000/api/products/ad", product)
             .then((response) => {
                 if (response.status === 200) {
                     // Update the list of products and close the modal
                     setListUpdated(true);
                     setLoading(false);
                     toggle();
+                    setErrorMessage("");
+                } else {
+                    // Error handling
+                    setErrorMessage("Product not added. Error: " + response.status + " " + response.statusText);
+                    setLoading(false);
                 }
             })
             .catch((error) => {
-                console.log(error);
+                // Error handling
+                setErrorMessage("Product not added. Error: " + error);
+                setLoading(false);
             });
     }
 
@@ -112,9 +128,9 @@ function ProductAddModal(props) {
                     <FormGroup>
                         <Label for="developers">Developers (up to 5)</Label>
                         <Input type="text" name="developers" id="developers" placeholder="Enter the developers (comma separated)" required />
-                        <p className="text-danger">{errorMessage}</p>
                     </FormGroup>
                     <ModalFooter>
+                        {errorMessage && <p className="text-danger">{errorMessage}</p>}
                         <Button color="primary" type="submit" disabled={loading}>
                             {loading ? <Spinner size="sm" color="light" /> : "Submit"}
                         </Button>

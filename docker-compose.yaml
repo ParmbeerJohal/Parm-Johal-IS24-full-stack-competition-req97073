@@ -3,10 +3,10 @@ services:
   backend:
     build: ./web-app-tracker-backend
     ports:
-      - "8000:8000"
+      - "3000:3000"
   frontend:
     build: ./web-app-tracker
     ports:
-      - "3000:3000"
+      - "2000:2000"
     depends_on:
       - backend

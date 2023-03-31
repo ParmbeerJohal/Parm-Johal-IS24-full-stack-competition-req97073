@@ -110,7 +110,7 @@ app.delete("/api/products/:productId/delete", (req, res) => {
 });
 
 // API health check
-app.get("/api/health", (req, res) => {
+app.get("/api", (req, res) => {
     res.sendStatus(200);
 });
 
@@ -118,6 +118,6 @@ app.get("/api/health", (req, res) => {
 app.use("/api/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Start the server
-app.listen(8000, () => {
-    console.log("Server is running on port 8000");
+app.listen(3000, () => {
+    console.log("Server is running on port 3000");
 });

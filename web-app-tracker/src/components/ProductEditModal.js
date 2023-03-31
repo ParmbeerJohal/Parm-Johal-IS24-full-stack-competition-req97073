@@ -79,7 +79,7 @@ function ProductEditModal(props) {
     };
 
     // Update the product
-    await axios.put(`http://localhost:8000/api/products/${selectedProduct.productId}/update`, product)
+    await axios.put(`http://localhost:3000/api/products/${selectedProduct.productId}/update`, product)
       .then((response) => {
         if (response.status === 200) {
           // Update the list of products and close the modal

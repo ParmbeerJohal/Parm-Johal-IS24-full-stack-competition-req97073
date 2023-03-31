@@ -28,7 +28,7 @@ function App() {
   // Get the list of products
   useEffect(() => {
     async function getProducts() {
-      await axios.get("http://localhost:8000/api/products")
+      await axios.get("http://localhost:3000/api/products")
         .then(response => {
           if (response.status === 200) {
             setErrorMessage("");
@@ -53,7 +53,7 @@ function App() {
   useEffect(() => {
     if (listUpdated) {
       async function getProducts() {
-        await axios.get("http://localhost:8000/api/products")
+        await axios.get("http://localhost:3000/api/products")
           .then(response => {
             if (response.status === 200) {
               setErrorMessage("");

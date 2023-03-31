@@ -52,6 +52,7 @@ function App() {
             if (response.status === 200) {
               setError(false);
               setProducts(response.data);
+
               setLoading(false);
             } else {
               console.log(response);
@@ -67,6 +68,19 @@ function App() {
       setListUpdated(false);
     }
   }, [listUpdated]);
+
+  // useEffect(() => {
+  //   setProducts(products.filter(product => {
+  //     return (
+  //       product.productName.toLowerCase().includes(productNameFilter.toLowerCase())
+  //       && product.scrumMaster.toLowerCase().includes(scrumMasterFilter.toLowerCase())
+  //       && product.productOwner.toLowerCase().includes(productOwnerFilter.toLowerCase())
+  //       && product.developerName.toLowerCase().includes(developerNameFilter.toLowerCase())
+  //       && product.startDate.toLowerCase().includes(startDateFilter.toLowerCase())
+  //       && product.methodology.toLowerCase().includes(methodologyFilter.toLowerCase())
+  //     );
+  //   }));
+  // }, [products, productNameFilter, scrumMasterFilter, productOwnerFilter, developerNameFilter, startDateFilter, methodologyFilter]);
 
   if (loading) return (<Spinner className="spinner">Loading...</Spinner>);
 

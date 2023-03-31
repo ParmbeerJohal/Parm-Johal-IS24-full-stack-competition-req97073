@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { Table, Button, ButtonGroup } from "reactstrap";
 import Moment from 'react-moment';
 import { MdViewList, MdEdit, MdDelete } from "react-icons/md";
+import ProductFiltersRow from "./ProductFiltersRow";
 import ProductDetailModal from "./ProductDetailModal";
 import ProductEditModal from "./ProductEditModal";
 import ProductDeleteModal from "./ProductDeleteModal";
@@ -22,14 +23,25 @@ function ProductList(props) {
   const [modalDetail, setModalDetail] = useState(false);
   const [modalEdit, setModalEdit] = useState(false);
   const [modalDelete, setModalDelete] = useState(false);
-  
+
   // State to update the list of products
   const [listUpdated, setListUpdated] = useState(false);
   const [rowDelete, setRowDelete] = useState(false);
+  const [listFiltered, setListFiltered] = useState(false);
+
+  // Object to store the filter
+  const [filtersObject, setFiltersObject] = useState({
+    productNameFilter: "",
+    scrumMasterFilter: "",
+    productOwnerFilter: "",
+    developerNameFilter: "",
+    startDateFilter: "",
+    methodologyFilter: ""
+  });
 
   useEffect(() => {
     // Update the selected product in the list of products
-    if(listUpdated) {
+    if (listUpdated) {
       console.log("ProductList useEffect edit");
       setProducts(() => {
         return products.map((product) => {
@@ -43,7 +55,7 @@ function ProductList(props) {
     }
 
     // Delete the selected product from the list of products
-    if(rowDelete) {
+    if (rowDelete) {
       console.log("ProductList useEffect delete");
       setProducts(() => {
         return products.filter((product) => product.productId !== selectedProduct.productId);
@@ -76,11 +88,19 @@ function ProductList(props) {
   if (products) {
     return (
       <>
+        <ProductFiltersRow
+          filtersObject={filtersObject}
+          setFiltersObject={setFiltersObject}
+          setListFiltered={setListFiltered}
+        />
         <Table responsive hover>
           <thead>
             <tr>
               <th>
                 Actions
+              </th>
+              <th>
+                Product Number
               </th>
               <th>
                 Product Name
@@ -103,7 +123,22 @@ function ProductList(props) {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {products
+            .filter((product) => {
+              return (
+                listFiltered ? (
+                  product.productName?.toLowerCase().includes(filtersObject.productNameFilter?.toLowerCase()) &&
+                  product.scrumMasterName?.toLowerCase().includes(filtersObject.scrumMasterFilter?.toLowerCase()) &&
+                  product.productOwnerName?.toLowerCase().includes(filtersObject.productOwnerFilter?.toLowerCase()) &&
+                  //product.developerNames?.toLowerCase().includes(filtersObject.developerNameFilter?.toLowerCase()) &&
+                  product.startDate?.toLowerCase().includes(filtersObject.startDateFilter?.toLowerCase()) &&
+                  product.methodology?.toLowerCase().includes(filtersObject.methodologyFilter?.toLowerCase())
+                ) : (
+                  product
+                )
+              );
+            })
+            .map((product) => (
               <tr key={product.productId}>
                 <td>
                   <ButtonGroup>
@@ -119,6 +154,7 @@ function ProductList(props) {
                   </ButtonGroup>
 
                 </td>
+                <td>{product.productId}</td>
                 <td>{product.productName}</td>
                 <td>{product.scrumMasterName}</td>
                 <td>{product.productOwnerName}</td>
@@ -128,11 +164,12 @@ function ProductList(props) {
                 <td><Moment date={product.startDate} format={"YYYY-MM-DD"} /></td>
                 <td>{product.methodology}</td>
               </tr>
-            ))}
+            ))
+          }
           </tbody>
         </Table>
         <ProductDetailModal modal={modalDetail} setModalDetail={setModalDetail} selectedProduct={selectedProduct} />
-        <ProductEditModal modal={modalEdit} setModalEdit={setModalEdit} selectedProduct={selectedProduct} setListUpdated={setListUpdated} setSelectedProduct={setSelectedProduct}  />
+        <ProductEditModal modal={modalEdit} setModalEdit={setModalEdit} selectedProduct={selectedProduct} setListUpdated={setListUpdated} setSelectedProduct={setSelectedProduct} />
         <ProductDeleteModal modal={modalDelete} setModalDelete={setModalDelete} selectedProduct={selectedProduct} setRowDelete={setRowDelete} />
       </>
     );

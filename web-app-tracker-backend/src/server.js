@@ -8,6 +8,8 @@
 import express from "express";
 import * as fs from 'fs';
 import cors from "cors";
+import swaggerUi from "swagger-ui-express";
+import swaggerDocument from "../swagger.json" assert { type: "json" };
 
 // Create a new express application instance
 const app = express();
@@ -93,6 +95,9 @@ app.delete("/api/webapps/:productId/deletewebapp", (req, res) => {
         res.sendStatus(404);
     }
 });
+
+// Serve the Swagger UI
+app.use("/api/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Start the server
 app.listen(8000, () => {

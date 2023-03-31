@@ -43,26 +43,24 @@ function ProductDeleteModal(props) {
 
     // Handle the delete button click
     const handleDelete = async () => {
-        console.log("Delete product");
         setLoading(true);
 
         // Delete the product
         await axios.delete(`http://localhost:8000/api/products/${selectedProduct.productId}/delete`)
             .then(response => {
-                console.log(response);
                 if (response.status === 200) {
-                    console.log("Product deleted");
                     setLoading(false);
                     setRowDelete(true);
                     setErrorMessage("");
                     toggle();
                 } else {
-                    console.log("Product not deleted");
+                    // Error handling
+                    setLoading(false);
                     setErrorMessage("Product not deleted. Error: " + response.status + " " + response.statusText);
                 }
             })
             .catch(error => {
-                console.log(error);
+                // Error handling
                 setLoading(false);
                 setErrorMessage("Product not deleted. Error: " + error);
             });

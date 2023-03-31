@@ -36,12 +36,12 @@ function App() {
             setLoading(false);
           } else {
             // If the response status is not 200, log the response
-            setErrorMessage("Error: " + response.status + " " + response.statusText)
+            setErrorMessage("Error: " + response.status + " " + response.statusText);
             setLoading(false);
           }
         })
-        // Catch any errors
         .catch(error => {
+          // Error handling
           setErrorMessage("Error: " + error)
           setLoading(false);
         });
@@ -58,14 +58,16 @@ function App() {
             if (response.status === 200) {
               setErrorMessage("");
               setProducts(response.data);
-
-              setLoading(false);
             } else {
-              setErrorMessage("Error: " + response.status + " " + response.statusText)
+              // Error handling
+              setErrorMessage("Error: " + response.status + " " + response.statusText);
             }
+            setLoading(false);
           })
           .catch(error => {
-            setErrorMessage("Error: " + error)
+            // Error handling
+            setErrorMessage("Error: " + error);
+            setLoading(false);
           });
       }
       getProducts();

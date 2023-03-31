@@ -36,8 +36,10 @@ function ProductEditModal(props) {
     setSelectedProduct
   } = props;
 
+  // State to store the loading spinner
   const [loading, setLoading] = useState(false);
 
+  // Toggle the edit modal and reset the error message
   const toggle = () => {
     setModalEdit(!modal);
     setErrorMessage("");
@@ -65,6 +67,7 @@ function ProductEditModal(props) {
       return;
     }
 
+    // Create the product object
     const product = {
       productName: data.get("productName"),
       productId: selectedProduct.productId,
@@ -90,7 +93,7 @@ function ProductEditModal(props) {
           // Close the modal
           toggle();
         } else {
-          // Error logging
+          // Error handling
           setErrorMessage("Product not edited. Error: " + response.status + " " + response.statusText);
         }
         // Stop the loading spinner
@@ -98,7 +101,7 @@ function ProductEditModal(props) {
       })
       // Catch any errors
       .catch((error) => {
-        // Error logging
+        // Error handling
         setLoading(false);
         setErrorMessage("Product not edited. Error: " + error);
       });

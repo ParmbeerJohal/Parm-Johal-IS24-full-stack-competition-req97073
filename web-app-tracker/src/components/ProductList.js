@@ -5,14 +5,24 @@
  */
 
 import { useEffect, useState } from "react";
-import { Table, Button, ButtonGroup } from "reactstrap";
 import Moment from 'react-moment';
 import { MdViewList, MdEdit, MdDelete } from "react-icons/md";
 import ProductFiltersRow from "./ProductFiltersRow";
 import ProductDetailModal from "./ProductDetailModal";
 import ProductEditModal from "./ProductEditModal";
 import ProductDeleteModal from "./ProductDeleteModal";
+import {
+  Table,
+  Button,
+  ButtonGroup
+} from "reactstrap";
 
+/**
+ * @function ProductList
+ * @description This is the component that displays the list of products.
+ * @param { products, setProducts, error } props
+ * @return {JSX.Element}
+ */
 function ProductList(props) {
   const { products, setProducts, error } = props;
 
@@ -62,7 +72,6 @@ function ProductList(props) {
   useEffect(() => {
     // Update the selected product in the list of products
     if (listUpdated) {
-      console.log("ProductList useEffect edit");
       setProducts(() => {
         return products.map((product) => {
           if (product.productId === selectedProduct.productId) {
@@ -77,7 +86,6 @@ function ProductList(props) {
 
     // Delete the selected product from the list of products
     if (rowDelete) {
-      console.log("ProductList useEffect delete");
       setProducts(() => {
         return products.filter((product) => product.productId !== selectedProduct.productId);
       });

@@ -26,11 +26,19 @@ import {
  * @return {JSX.Element}
  */
 function ProductAddModal(props) {
-    const { modal, setModalAdd, setListUpdated } = props;
+    const {
+        modal,
+        setModalAdd,
+        setListUpdated
+    } = props;
+
+    // State to store the loading spinner
     const [loading, setLoading] = useState(false);
 
+    // State to store the error message
     const [errorMessage, setErrorMessage] = useState("");
 
+    // Toggle the add modal and reset the error message
     const toggle = () => {
         setModalAdd(!modal);
         setErrorMessage("");
@@ -57,6 +65,7 @@ function ProductAddModal(props) {
             return;
         }
 
+        // Create the product object
         const product = {
             productName: data.get("productName"),
             productOwnerName: data.get("productOwner"),
@@ -76,12 +85,13 @@ function ProductAddModal(props) {
                     toggle();
                     setErrorMessage("");
                 } else {
-                    // Display an error message
+                    // Error handling
                     setErrorMessage("Product not added. Error: " + response.status + " " + response.statusText);
                     setLoading(false);
                 }
             })
             .catch((error) => {
+                // Error handling
                 setErrorMessage("Product not added. Error: " + error);
                 setLoading(false);
             });
